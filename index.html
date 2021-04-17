@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+    <script src="js/axios.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <form action="">
+            <table>
+                <tr>
+                    <td>用户名：</td>
+                    <td><input type="text" v-model="user"></td>
+                </tr>
+                <tr>
+                    <td>密码</td>
+                    <td><input type="password" v-model="password"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><button v-on:click="button">登录</button></td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    new Vue({
+        el:"#app",
+        data:{
+            user:"",
+            password:"",
+        },
+        methods:{
+            button(){
+
+                axios({
+                        method:'post',
+                        url:'http://localhost:8080/userlogin',
+                        data:{
+                            user_name:this.user,
+                            user_password:this.password
+                        }
+                    }).then(function (d) {
+                        console.log(d)
+                    })
+            }
+        },
+    })
+</script>
+</html>
